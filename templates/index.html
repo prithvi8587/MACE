@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MACE Quantum Property Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --panel-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-green: #2ea44f;
+            --danger: #f85149;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h1 { margin: 0; color: #ffffff; font-size: 24px; }
+        .developer { color: var(--accent-blue); font-weight: bold; margin-top: 5px; }
+
+        .search-box {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: var(--accent-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h3 { margin-top: 0; color: #ffffff; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+
+        .mol-img-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 200px;
+            background-color: #21262d;
+            border-radius: 6px;
+            color: var(--text-muted);
+            border: 1px dashed var(--border-color);
+        }
+
+        .desc-table, .props-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .desc-table td, .props-table td, .props-table th {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .props-table th { color: var(--text-muted); font-weight: normal; }
+        .prop-name { font-weight: bold; color: var(--accent-blue); }
+
+        .ai-text {
+            line-height: 1.6;
+            color: #e6edf3;
+        }
+
+        .db-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .btn-link {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>MACE Deep Learning Quantum Property Dashboard</h1>
+        <div class="developer">Lead Systems Architect: Prithvi Gupta</div>
+    </header>
+
+    <div class="search-box">
+        <div class="form-group">
+            <input type="text" value="Aspirin" placeholder="Enter name or structural formula...">
+            <button type="button">Compute Predictions</button>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div>
+            <div class="panel">
+                <h3>2D Molecular Diagram</h3>
+                <div class="mol-img-placeholder">Structure Preview Area</div>
+            </div>
+
+            <div class="panel">
+                <h3>Physical Descriptors</h3>
+                <table class="desc-table">
+                    <tr><td style="color:var(--text-muted);">Molecular Weight</td><td style="text-align:right; font-weight:bold;">180.16 g/mol</td></tr>
+                    <tr><td style="color:var(--text-muted);">LogP (Lipophilicity)</td><td style="text-align:right; font-weight:bold;">1.19</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <div class="panel">
+                <h3>Equivariant Model Quantum Targets (QM9)</h3>
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Target Parameter</th>
+                            <th>Predicted Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="prop-name">Dipole Moment (μ)</td><td>5.8241 Debye</td></tr>
+                        <tr><td class="prop-name">Fundamental Band Gap</td><td>6.4102 eV</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel">
+                <h3>Gemini 2.5 Flash Chemical Insight</h3>
+                <div class="ai-text">Dashboard interface rendered successfully. Ready for live model integration.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
